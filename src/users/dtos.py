@@ -13,3 +13,13 @@ class UserResponseSchema(BaseModel):
     username: str
     email: str
     is_active: bool
+
+
+class UserLoginSchema(BaseModel):
+    email: str
+    password: str
+
+
+class TokenResponseSchema(BaseModel):
+    access_token: str
+    token_type: str
