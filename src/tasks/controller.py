@@ -15,21 +15,19 @@ def create_task(body:TaskSchema, db: Session):
     db.refresh(new_task)
 
 
-    return { "status": "Task create Successfully",
-            "data" : new_task }
+    return new_task
 
 
 def get_tasks(db:Session):
     tasks = db.query(TaskModel).all()
-    return {"status" : "All tasks", "data" : tasks}
+    return tasks
 
 def get_task(id:int, db: Session):
     one_task = db.query(TaskModel).get(id)
     if not one_task:
         raise HTTPException(404, detail="Task Id incorrect")
 
-    return { "status": "Task fetched Successfully",
-            "data" : one_task }
+    return one_task
 
 def update_task(body:TaskModel, id:int, db:Session):
     one_task = db.query(TaskModel).get(id)
@@ -45,8 +43,7 @@ def update_task(body:TaskModel, id:int, db:Session):
     db.refresh(one_task)
 
 
-    return { "status": "Task updated Successfully",
-            "data" : one_task }
+    return one_task
 
 def delete_task(id:int, db:Session):
     one_task = db.query(TaskModel).get(id)
@@ -56,6 +53,4 @@ def delete_task(id:int, db:Session):
     db.delete(one_task)
     db.commit()
 
-    return { "status": "Task deleted Successfully",
-            "data" : one_task }
-    
+    return None
