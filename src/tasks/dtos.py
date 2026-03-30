@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class TaskSchema(BaseModel):
     title:str
     description: str
@@ -9,4 +10,5 @@ class TaskResponseSchema(BaseModel):
     id:int
     title:str
     description: str
+    user_id: int
     is_completed: bool
